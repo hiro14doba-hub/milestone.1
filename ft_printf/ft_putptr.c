@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dobashihiromunin <dobashihiromunin@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 19:31:02 by hdobashi          #+#    #+#             */
-/*   Updated: 2026/06/09 17:38:25 by dobashihiro      ###   ########.fr       */
+/*   Created: 2026/06/08 20:14:42 by dobashihiro       #+#    #+#             */
+/*   Updated: 2026/06/09 17:37:59 by dobashihiro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int ft_putptr(void *ptr)
 {
-    va_list args;
+    unsigned long long addr;
     int count;
-    int i;
-
+    
+    if(!ptr)
+        return(ft_putstr("(nil)"));
     count = 0;
-    i = 0;
-    va_start(args,format);
+    addr = (unsigned long long)ptr;
 
-    while(format[i] !='\0')
-    {
-        if(format[i] == '%')
-        {
-            i++;
-            if(format[i] == '\0')
-                break;
-            count = count + print_check(format[i],&args);
-        }
-        else
-            count = count + ft_putchar(format[i]);
-        i++;
-    }
-    va_end(args);
+    count = count + ft_putstr("0x");
+    count = count + ft_put_hexlow(addr);
     return(count);
 }

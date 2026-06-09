@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_hexup.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dobashihiromunin <dobashihiromunin@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/08 19:48:47 by dobashihiro       #+#    #+#             */
-/*   Updated: 2026/06/09 17:38:20 by dobashihiro      ###   ########.fr       */
+/*   Created: 2026/06/08 20:09:06 by dobashihiro       #+#    #+#             */
+/*   Updated: 2026/06/09 17:40:08 by dobashihiro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_put_hexup(unsigned long long n)
+int	ft_putnbr_unsigned(unsigned int nb)
 {
-    char *res;
-    int len;
-    int count;
+	int		len;
+	char	c;
+	long	nptr;
 
-    len = hexlen(n);
-    res = (char *)malloc(sizeof(char)*(len + 1));
-    if(!res)
-        return(0);
-    res[len]= '\0';
-    if(n == 0)
-        res[0]='0';
-    while(n > 0)
-    {
-        len--;
-        res[len] = "0123456789ABCDEF"[n % 16];
-        n = n/16;
-    }
-    count = ft_putstr(res);
-    free(res);
-    return(count);
+	nptr = nb;
+	len = 0;
+	if (nptr >= 10)
+		len = len + ft_putnbr(nptr/10);
+	c = nptr % 10 + '0';
+	len = len + ft_putchar(c);
+	return (len);
 }
