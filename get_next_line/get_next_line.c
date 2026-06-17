@@ -6,13 +6,13 @@
 /*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 17:23:07 by dobashihiro       #+#    #+#             */
-/*   Updated: 2026/06/17 19:36:01 by hdobashi         ###   ########.fr       */
+/*   Updated: 2026/06/17 19:42:53 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*reed_store(int fd, char *store)
+static char	*read_store(int fd, char *store)
 {
 	char	*buf;
 	int		bytes;
@@ -44,8 +44,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	store = reed_store(fd, store);
-	if (store)
+	store = read_store(fd, store);
+	if (!store)
 		return (NULL);
 	line = get_line(store);
 	store = update_store(store);

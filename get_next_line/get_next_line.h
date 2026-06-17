@@ -6,7 +6,7 @@
 /*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 16:33:47 by hdobashi          #+#    #+#             */
-/*   Updated: 2026/06/17 19:35:59 by hdobashi         ###   ########.fr       */
+/*   Updated: 2026/06/17 19:40:54 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@
 #  define BUFFER_SIZE 42
 # endif
 
-char		*get_next_line(int fd);
-static char	*reed_store(int fd, char *store);
+char	*get_next_line(int fd);
 
-int			ft_strlen(char *s);
-int			check_line(char *s);
-char		*ft_strjoin(char *s1, char *s2);
-char		*update_store(char *s);
-char		*get_line(char *s);
+int		ft_strlen(char *s);
+int		check_line(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*update_store(char *s);
+char	*get_line(char *s);
 
 #endif
