@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dobashihiromunin <dobashihiromunin@stud    +#+  +:+       +#+        */
+/*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:26:13 by hdobashi          #+#    #+#             */
-/*   Updated: 2026/06/09 17:38:27 by dobashihiro      ###   ########.fr       */
+/*   Updated: 2026/06/17 16:32:22 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
