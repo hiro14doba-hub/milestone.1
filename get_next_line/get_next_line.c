@@ -6,7 +6,7 @@
 /*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 17:23:07 by dobashihiro       #+#    #+#             */
-/*   Updated: 2026/06/17 19:42:53 by hdobashi         ###   ########.fr       */
+/*   Updated: 2026/07/29 17:26:55 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,25 @@ static char	*read_store(int fd, char *store)
 	char	*buf;
 	int		bytes;
 
+	if (check_line(store))
+		return (store);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
-	bytes = 1;
-	while (!check_line(store) && bytes != 0)
+	while (1)
 	{
 		bytes = read(fd, buf, BUFFER_SIZE);
 		if (bytes == -1)
 		{
-			free(buf);
 			free(store);
-			return (NULL);
+			store = NULL;
 		}
+		if (bytes <= 0)
+			break ;
 		buf[bytes] = '\0';
 		store = ft_strjoin(store, buf);
+		if (check_line(buf))
+			break ;
 	}
 	free(buf);
 	return (store);
