@@ -6,18 +6,18 @@
 #    By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/15 17:23:13 by dobashihiro       #+#    #+#              #
-#    Updated: 2026/06/17 19:35:55 by hdobashi         ###   ########.fr        #
+#    Updated: 2026/08/09 23:08:11 by hdobashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CFLAGS = -Wall -Werror -Wextra
 
-CC = CC
+CC = cc
 
 RM = rm -f
-
-SRC = get_next_line.c , get_next_line_utils.cc
+NAME = get_next_line.a
+SRC = get_next_line.c  get_next_line_utils.c
 
 OBJS = $(SRC:.c=.o)
 
