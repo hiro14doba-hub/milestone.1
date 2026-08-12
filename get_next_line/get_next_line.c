@@ -6,11 +6,17 @@
 /*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 17:23:07 by dobashihiro       #+#    #+#             */
-/*   Updated: 2026/07/29 17:26:55 by hdobashi         ###   ########.fr       */
+/*   Updated: 2026/08/12 16:21:50 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*free_ptr(char *ptr)
+{
+	free(ptr);
+	return (NULL);
+}
 
 static char	*read_store(int fd, char *store)
 {
@@ -21,20 +27,17 @@ static char	*read_store(int fd, char *store)
 		return (store);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL);
+		return (free_ptr(store));
 	while (1)
 	{
 		bytes = read(fd, buf, BUFFER_SIZE);
 		if (bytes == -1)
-		{
-			free(store);
-			store = NULL;
-		}
+			store = free_ptr(store);
 		if (bytes <= 0)
 			break ;
 		buf[bytes] = '\0';
 		store = ft_strjoin(store, buf);
-		if (check_line(buf))
+		if (!store || check_line(buf))
 			break ;
 	}
 	free(buf);
