@@ -6,7 +6,7 @@
 /*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 20:09:06 by dobashihiro       #+#    #+#             */
-/*   Updated: 2026/06/17 16:32:26 by hdobashi         ###   ########.fr       */
+/*   Updated: 2026/08/19 17:42:05 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 int	ft_putnbr_unsigned(unsigned int nb)
 {
 	int		len;
-	char	c;
 	long	nptr;
+	int		temp;
 
-	nptr = nb;
 	len = 0;
+	nptr = nb;
 	if (nptr >= 10)
-		len = len + ft_putnbr(nptr / 10);
-	c = nptr % 10 + '0';
-	len = len + ft_putchar(c);
-	return (len);
+	{
+		temp = ft_putnbr_unsigned(nptr / 10);
+		if (temp == -1)
+			return (-1);
+		len = len + temp;
+	}
+	temp = ft_putchar(nptr % 10 + '0');
+	if (temp == -1)
+		return (-1);
+	return (len + temp);
 }

@@ -6,7 +6,7 @@
 /*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 19:48:47 by dobashihiro       #+#    #+#             */
-/*   Updated: 2026/06/17 16:32:58 by hdobashi         ###   ########.fr       */
+/*   Updated: 2026/08/19 17:42:32 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,19 @@
 
 int	ft_put_hexup(unsigned long long n)
 {
-	char	*res;
-	int		len;
-	int		count;
+	int	count;
+	int	temp;
 
-	len = hexlen(n);
-	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (0);
-	res[len] = '\0';
-	if (n == 0)
-		res[0] = '0';
-	while (n > 0)
+	count = 0;
+	if (n >= 16)
 	{
-		len--;
-		res[len] = "0123456789ABCDEF"[n % 16];
-		n = n / 16;
+		temp = ft_put_hexup(n / 16);
+		if (temp == -1)
+			return (-1);
+		count = count + temp;
 	}
-	count = ft_putstr(res);
-	free(res);
-	return (count);
+	temp = ft_putchar("0123456789ABCDEF"[n % 16]);
+	if (temp == -1)
+		return (-1);
+	return (count + temp);
 }

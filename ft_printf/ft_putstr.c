@@ -6,7 +6,7 @@
 /*   By: hdobashi <hdobashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 13:26:06 by hdobashi          #+#    #+#             */
-/*   Updated: 2026/06/17 16:32:42 by hdobashi         ###   ########.fr       */
+/*   Updated: 2026/08/19 16:38:30 by hdobashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_putstr(char *s)
 {
 	int	len;
 	int	i;
+	int	temp;
 
 	len = 0;
 	i = 0;
@@ -23,7 +24,10 @@ int	ft_putstr(char *s)
 		return (ft_putstr("(null)"));
 	while (s[i] != '\0')
 	{
-		len = len + ft_putchar(s[i]);
+		temp = ft_putchar(s[i]);
+		if (temp == -1)
+			return (-1);
+		len = len + temp;
 		i++;
 	}
 	return (len);
